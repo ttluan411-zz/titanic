@@ -1,13 +1,26 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import './SearchBar.css';
 
-export default class SearchBar extends Component {
-    constructor(props){
-        super(props);
+class SearchBar extends Component {
+    constructor(){
+        super()
+        
     }
+    onValueChange = (event) => {
+        this.props.update(event.target.value)
+    }
+    render() {
+        return (
+            <div className="search-bar">
+            <input
+              ref="input"
+              onChange={this.onValueChange}
+              value={this.props.value}
+              type="text"
+              placeholder="Type Name..." />
+            </div>
+        );
+    }
+}
 
-    render(){
-        return(
-            <div></div>
-        )
-    }
-}// 
+export default SearchBar;
