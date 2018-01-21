@@ -1,0 +1,14 @@
+.table {
+  margin: 1em;
+  display: flex;
+  flex-direction: column; }
+  .table .header, .table .row {
+    display: flex; }
+    .table .header div, .table .row div {
+      flex: 1;
+      padding: 0.2rem 0.4em;
+      border: 1px solid #eeeeee; }
+  .table .header {
+    background-color: #eeeeee; }
+    .table .header div {
+      cursor: pointer; }
