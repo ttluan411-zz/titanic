@@ -18,7 +18,8 @@ class App extends Component {
     .then(response => {
       console.log(response.data)
       this.setState({
-        data: response.data
+        data: response.data,
+        filteredList: response.data
       })
       console.log(this.state)
     })
@@ -33,14 +34,14 @@ class App extends Component {
       return item.name.toLowerCase().search(searchValue) !== -1;
     })
     this.setState({
-      filteredList: filteredList,
+      filteredList,
       searchString: value
     });
   }
 
   render() {
     return (
-      <div className="App">
+      <div id="App">
         <SearchBar value={this.state.searchString} update={this.filterList} />
         <PassengerList passengerData={this.state.filteredList}/>
       </div>

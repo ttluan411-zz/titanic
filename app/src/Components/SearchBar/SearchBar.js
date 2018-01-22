@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import './SearchBar.css';
 
 class SearchBar extends Component {
-    constructor(){
-        super()
-        
-    }
+    
     onValueChange = (event) => {
         this.props.update(event.target.value)
     }

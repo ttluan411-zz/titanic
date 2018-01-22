@@ -1,56 +1,64 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import './PassengerList.css';
 
-const Row = ({id, name, sex , age, ticket_fare, ticket_number, ticket_type, survived, }) => (
-    <div className="row">
-      <div>{id}</div>
-      <div>{name}</div>
-      <div>{sex}</div>
-      <div>{age}</div>
-      <div>{ticket_fare}</div>
-      <div>{ticket_number}</div>
-      <div>{ticket_type}</div>
-      <div>{survived ? 'Yes' : 'No'}</div>
-    </div>
-  );
 
 
 export default class Table extends Component {
-    constructor(props) {
-      super(props);
-
-      this.compareBy.bind(this);
-      this.sortBy.bind(this);
+  constructor(props) {
+    super(props);
+  
+    this.state = {
+      noteInput: '',
+      noteContent: ''
     }
+  }
+  onNoteChange = (event) => {
+    this.setState({
+      noteInput: event.target.value
+    })
+  }
+  onSubmit = (event) => {
+    // axios.put
+  }
+  
+  render() {
+    const Row = ({id, name, sex , age, ticket_fare, ticket_number, ticket_type, survived }) => (
+        <div className="row">
+          <div>{id}</div>
+          <div>{name}</div>
+          <div>{sex}</div>
+          <div>{age}</div>
+          <div>{ticket_fare}</div>
+          <div>{ticket_number}</div>
+          <div>{ticket_type}</div>
+          <div>{survived ? 'Yes' : 'No'}</div>
+          <div>
+            <input 
+              onChange={this.onNoteChange}
+              value={this.state.noteInput}
+              type="text"
+              placeholder="Type note..." />
+            <button
+              onSubmit = {this.onSubmit}
+            >Submit</button>
+          </div>
+        </div>
+      );
+      const rows = this.props.passengerData.map((rowData) => <Row {...rowData} key={rowData.id} />);
 
-    compareBy(key) {
-      return function (a, b) {
-        if (a[key] < b[key]) return -1;
-        if (a[key] > b[key]) return 1;
-        return 0;
-      };
-    }
-
-    sortBy(key) {
-      let arrayCopy = [...this.props.passengerData];
-      arrayCopy.sort(this.compareBy(key));
-      this.setState({data: arrayCopy});
-    }
-
-    render() {
-      const rows = this.props.passengerData.map((rowData) => <Row {...rowData} />);
       return (
           <div className="table">
             <div className="header">
-            {/* click on header to sort by categories */}
-              <div onClick={() => this.sortBy('id')} >ID</div>
-              <div onClick={() => this.sortBy('name')}>NAME</div>
-              <div onClick={() => this.sortBy('sex')}>SEX</div>
-              <div onClick={() => this.sortBy('age')}>AGE</div>
-              <div onClick={() => this.sortBy('ticket_fare')}>TICKET FARE</div>
-              <div onClick={() => this.sortBy('ticket_number')}>TICKET NUMBER</div>
-              <div onClick={() => this.sortBy('ticket_type')}>TICKET TYPE</div>
-              <div onClick={() => this.sortBy('survived')}>SURVIVED</div>
+              <div>ID</div>
+              <div>NAME</div>
+              <div>SEX</div>
+              <div>AGE</div>
+              <div>TICKET FARE</div>
+              <div>TICKET NUMBER</div>
+              <div>TICKET TYPE</div>
+              <div>SURVIVED</div>
+              <div>NOTE</div>
             </div>
             <div className="body">
               {rows}
