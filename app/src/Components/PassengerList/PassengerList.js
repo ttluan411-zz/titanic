@@ -36,7 +36,7 @@ export default class Table extends Component {
    this.setState({
      isModalOpen: false,
    })
-   console.log(this.state)
+   // CREATE NEW PASSENGER'S NOTES BY ID
    axios.post(`/passenger/${this.state.selectedId}/note`, 
       {message:this.state.inputValue}
     )
@@ -75,7 +75,7 @@ export default class Table extends Component {
         </div>
       );
       const rows = this.props.passengerData.map((rowData, i) => <Row {...rowData} key={i}/>);
-      const notes = this.state.passengerNote.map(note => <li className="note-list">{note.message}</li>)
+      const notes = this.state.passengerNote.map((note,i) => <li className="note-list" key={i}>{note.message}</li>)
       return (
           <div className="table">
             <div className="header">
@@ -109,7 +109,7 @@ export default class Table extends Component {
               Add Note
               </button>
               <ul>
-              {this.state.passengerNote !== [] ? notes : <span>loading</span>}
+              {this.state.passengerNote.length > 0 ? notes : 'Loading...'}
               </ul>
               </Modal>
           </div>
