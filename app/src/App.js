@@ -21,7 +21,6 @@ class App extends Component {
         data: response.data,
         filteredList: response.data
       })
-      console.log(this.state)
     })
     .catch(err => console.log(err))
   }
@@ -42,6 +41,7 @@ class App extends Component {
   render() {
     return (
       <div id="App">
+        <code>{"#titanic {float : none;}"}</code>
         <SearchBar value={this.state.searchString} update={this.filterList} />
         <PassengerList passengerData={this.state.filteredList}/>
       </div>

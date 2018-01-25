@@ -11,17 +11,25 @@ export default class Table extends Component {
   
     this.state = {
       isModalOpen: false,
-      selectedId: null
+      selectedId: null,
+      inputValue: '',
+      passengerNote: []
     }
   }
 
   openModal = (id) => {
-   console.log(id)
    this.setState({
      isModalOpen: true,
      selectedId: id
     })
-    console.log(this.state)
+    //FETCH PASSENGER'S NOTES BY ID
+    axios.get(`/passenger/${id}/note`)
+      .then(res => {
+        this.setState({
+          passengerNote: res.data
+        })
+      })
+      .catch(err => console.log(err))
   };
 
   closeModal = () =>{
@@ -29,8 +37,22 @@ export default class Table extends Component {
      isModalOpen: false,
    })
    console.log(this.state)
-   
-  } 
+   axios.post(`/passenger/${this.state.selectedId}/note`, 
+      {message:this.state.inputValue}
+    )
+    .then(response => {
+      console.log(response)
+      this.setState({inputValue:''})
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }; 
+  handleInputChange = (event) => {
+    this.setState({
+      inputValue: event.target.value
+    })
+  };
   
   
   render() {
@@ -46,13 +68,14 @@ export default class Table extends Component {
           <div>{survived ? 'Yes' : 'No'}</div>
           <div>
             <button
+              className="view-note-button"
               onClick={() => this.openModal(id)}
-            >Add Note</button>
+            >View Notes</button>
           </div>
         </div>
       );
       const rows = this.props.passengerData.map((rowData, i) => <Row {...rowData} key={i}/>);
-
+      const notes = this.state.passengerNote.map(note => <li className="note-list">{note.message}</li>)
       return (
           <div className="table">
             <div className="header">
@@ -60,9 +83,9 @@ export default class Table extends Component {
               <div>NAME</div>
               <div>SEX</div>
               <div>AGE</div>
-              <div>TICKET FARE</div>
-              <div>TICKET NUMBER</div>
-              <div>TICKET TYPE</div>
+              <div>FARE</div>
+              <div>TICKET</div>
+              <div>TYPE</div>
               <div>SURVIVED</div>
               <div>NOTE</div>
             </div>
@@ -72,7 +95,22 @@ export default class Table extends Component {
             <Modal 
               isModalOpen = {this.state.isModalOpen}
               >
-              <button className="close-button" onClick ={this.closeModal}>Close</button>
+              <input 
+                className="note-input"
+                type="text"
+                placeholder="Type note here..."
+                value={this.state.inputValue}
+                onChange={this.handleInputChange}
+              />
+              <button 
+                className="add-note-button" 
+                onClick ={this.closeModal}
+              >
+              Add Note
+              </button>
+              <ul>
+              {this.state.passengerNote !== [] ? notes : <span>loading</span>}
+              </ul>
               </Modal>
           </div>
       );

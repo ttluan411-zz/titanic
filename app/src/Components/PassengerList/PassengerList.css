@@ -1,25 +1,53 @@
 .table {
   margin: 4em;
+  font-size: 12px;
   display: flex;
   flex-direction: column;
-  box-shadow: 5px 50px 100px rgba(0, 0, 0, 0.75), 10px 15px 35px rgba(50, 50, 93, 0.15), 1px 5px 15px rgba(0, 0, 0, 0.1); }
+  box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.75), 10px 15px 35px rgba(50, 50, 93, 0.15), 1px 5px 15px rgba(0, 0, 0, 0.1); }
   .table .header, .table .row {
-    display: flex; }
+    display: flex;
+    align-items: center;
+    border-bottom: 0.3px solid #44475a; }
     .table .header div, .table .row div {
       flex: 1;
-      padding: 0.5rem 0.5em;
-      border-bottom: 0.3px solid #44475a; }
+      padding: 0.5em 1em; }
   .table .header {
     background-color: #44475a;
     color: #8be9fd; }
-  .table .close-button {
-    background-color: white;
+  .table .view-note-button {
+    background-color: #44475a;
+    border: none;
+    color: #8be9fd;
+    margin: 1em auto;
+    width: 8em;
+    height: 3em; }
+  .table .add-note-button {
+    background-color: #8be9fd;
+    box-shadow: 1px 5px 15px rgba(0, 0, 0, 0.4);
     border: 0;
-    padding: 30px;
-    color: black;
-    margin: 0 auto;
-    width: 150px;
-    display: block;
-    border-radius: 3px;
-    position: relative;
+    width: 60px;
+    height: 30px;
+    color: #44475a;
+    margin-left: 1.5em;
+    border-radius: 2px;
+    position: absolute;
     z-index: 4; }
+  .table .note-input {
+    bottom: 2px;
+    width: 80%;
+    margin-bottom: 2em;
+    height: 20px;
+    border: none;
+    border-bottom: 1px solid #8be9fd;
+    background-color: #44475a;
+    padding: .3em 1em;
+    color: #f8f8f2; }
+  .table .note-input:focus {
+    outline: none; }
+  .table .note-list {
+    height: 70%;
+    width: 100%;
+    position: relative;
+    z-index: 5;
+    color: #f8f8f2;
+    font-size: 10px; }

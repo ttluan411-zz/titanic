@@ -14,7 +14,7 @@ class SearchBar extends Component {
               onChange={this.onValueChange}
               value={this.props.value}
               type="text"
-              placeholder="Type Name..." />
+              placeholder="Search by name..." />
             </div>
         );
     }
