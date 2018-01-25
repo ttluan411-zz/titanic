@@ -9,18 +9,17 @@ export default class Table extends Component {
     super(props);
   
     this.state = {
-      noteInput: '',
-      noteContent: ''
+      isModalOpen: false,
     }
   }
-  onNoteChange = (event) => {
-    this.setState({
-      noteInput: event.target.value
-    })
-  }
-  onSubmit = (event) => {
-    // axios.put
-  }
+
+  handleClick(id){
+   console.log(id)
+   this.setState({
+     isModalOpen: true,
+   })
+  } 
+  
   
   render() {
     const Row = ({id, name, sex , age, ticket_fare, ticket_number, ticket_type, survived }) => (
@@ -34,18 +33,13 @@ export default class Table extends Component {
           <div>{ticket_type}</div>
           <div>{survived ? 'Yes' : 'No'}</div>
           <div>
-            <input 
-              onChange={this.onNoteChange}
-              value={this.state.noteInput}
-              type="text"
-              placeholder="Type note..." />
             <button
-              onSubmit = {this.onSubmit}
-            >Submit</button>
+              onClick={()=> this.handleClick(id)}
+            >Add Note</button>
           </div>
         </div>
       );
-      const rows = this.props.passengerData.map((rowData) => <Row {...rowData} key={rowData.id} />);
+      const rows = this.props.passengerData.map((rowData, i) => <Row {...rowData} key={i}/>);
 
       return (
           <div className="table">

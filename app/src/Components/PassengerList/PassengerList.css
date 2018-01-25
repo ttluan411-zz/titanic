@@ -1,12 +1,14 @@
 .table {
-  margin: 1em;
+  margin: 4em;
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  box-shadow: 5px 50px 100px rgba(0, 0, 0, 0.75), 10px 15px 35px rgba(50, 50, 93, 0.15), 1px 5px 15px rgba(0, 0, 0, 0.1); }
   .table .header, .table .row {
     display: flex; }
     .table .header div, .table .row div {
       flex: 1;
-      padding: 0.5rem 0.5em; }
+      padding: 0.5rem 0.5em;
+      border-bottom: 0.3px solid #44475a; }
   .table .header {
     background-color: #44475a;
-    color: #50fa7b; }
+    color: #8be9fd; }
