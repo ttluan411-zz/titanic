@@ -1,0 +1,31 @@
+.outer-area {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    z-index: 1;
+}
+.over-lay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+.modal {
+    position: relative;
+    width: 40vw;
+    height: 40vh;
+    padding: 30px;
+    box-sizing: border-box;
+    background-color: white;
+    margin: 40px auto;
+    border-radius: 4px;
+    z-index:2;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+}

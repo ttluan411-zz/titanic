@@ -12,3 +12,14 @@
   .table .header {
     background-color: #44475a;
     color: #8be9fd; }
+  .table .close-button {
+    background-color: white;
+    border: 0;
+    padding: 30px;
+    color: black;
+    margin: 0 auto;
+    width: 150px;
+    display: block;
+    border-radius: 3px;
+    position: relative;
+    z-index: 4; }

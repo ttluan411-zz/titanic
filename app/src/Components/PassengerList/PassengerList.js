@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './PassengerList.css';
+import Modal from '../Modal/Modal';
 
 
 
@@ -10,14 +11,25 @@ export default class Table extends Component {
   
     this.state = {
       isModalOpen: false,
+      selectedId: null
     }
   }
 
-  handleClick(id){
+  openModal = (id) => {
    console.log(id)
    this.setState({
      isModalOpen: true,
+     selectedId: id
+    })
+    console.log(this.state)
+  };
+
+  closeModal = () =>{
+   this.setState({
+     isModalOpen: false,
    })
+   console.log(this.state)
+   
   } 
   
   
@@ -34,7 +46,7 @@ export default class Table extends Component {
           <div>{survived ? 'Yes' : 'No'}</div>
           <div>
             <button
-              onClick={()=> this.handleClick(id)}
+              onClick={() => this.openModal(id)}
             >Add Note</button>
           </div>
         </div>
@@ -57,6 +69,11 @@ export default class Table extends Component {
             <div className="body">
               {rows}
             </div>
+            <Modal 
+              isModalOpen = {this.state.isModalOpen}
+              >
+              <button className="close-button" onClick ={this.closeModal}>Close</button>
+              </Modal>
           </div>
       );
       
